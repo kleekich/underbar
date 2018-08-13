@@ -99,6 +99,20 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    if(isSorted){
+      var arr = [];
+      _.each(array, function(el, index){
+        if(_.indexOf(arr, iterator(el)) === -1){
+          arr.push(el);
+        } 
+      });
+      return arr;
+    }else{
+      return _.filter(array, function(el, index){
+        return _.indexOf(array, el) === index;
+      });
+    }
+    
   };
 
 
