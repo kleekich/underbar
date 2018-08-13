@@ -305,11 +305,12 @@
     var cache = {};
     return function(){
       var args = [].slice.call(arguments);
-      var alreadyComputed = (args in cache);
+      var argsJSON = JSON.stringify(args);
+      var alreadyComputed = (argsJSON in cache);
       if(!alreadyComputed){
-        cache[args] = func.apply(this, args);
+        cache[argsJSON] = func.apply(this, args);
       }
-      return cache[args];
+      return cache[argsJSON];
     };
   };
 
