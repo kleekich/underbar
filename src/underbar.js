@@ -252,6 +252,15 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var args = [].slice.call(arguments);
+    args = args.slice(1);
+    return _.reduce(args, function(accumObject, object){
+      for(var key in object){
+        if(!accumObject.hasOwnProperty(key)) accumObject[key] = object[key];
+      }
+      return accumObject;
+    }
+    ,arguments[0]);
   };
 
 
