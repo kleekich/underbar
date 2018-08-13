@@ -56,7 +56,7 @@
         for (var key in collection){
           iterator(collection[key], key, collection);
         }
-    }else if(collection ==- null) return null;
+    }else if(collection === null) return null;
     
   };
 
