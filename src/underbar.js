@@ -236,8 +236,7 @@
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
     //var args = Array.prototype.slice.call(arguments);
-    var args = [].slice.call(arguments);
-    args = args.slice(1);
+    var args = [].slice.call(arguments,1);
     return _.reduce(args, function(accumObject, object){
       for(var key in object){
         accumObject[key] = object[key];
@@ -252,8 +251,7 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
-    var args = [].slice.call(arguments);
-    args = args.slice(1);
+    var args = [].slice.call(arguments,1);
     return _.reduce(args, function(accumObject, object){
       for(var key in object){
         if(!accumObject.hasOwnProperty(key)) accumObject[key] = object[key];
