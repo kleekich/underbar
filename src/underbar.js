@@ -235,7 +235,6 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    //var args = Array.prototype.slice.call(arguments);
     var args = [].slice.call(arguments,1);
     return _.reduce(args, function(accumObject, object){
       for(var key in object){
@@ -321,12 +320,10 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
-
     var argsForFunc = [].slice.call(arguments,2);
     window.setTimeout(function(){
       func.apply(this, argsForFunc);
     }, wait);
-
   };
 
 
@@ -341,7 +338,6 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
-
     var copy = array.slice();
     var index, temp;
     for (var i = 0; i < copy.length; i++){
@@ -379,10 +375,8 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
-
     if(typeof iterator === "string"){
       return collection.sort(function(a, b){
-
         return a[iterator] - b[iterator];
       });
     }else{
@@ -390,7 +384,6 @@
         return iterator(a) - iterator(b);
       });
     }
-
   };
 
   // Zip together two or more arrays with elements of the same index
@@ -443,8 +436,6 @@
     }
     //return array
     return result;
-    
-
   };
 
   // Take the difference between one array and a number of other arrays.
@@ -480,6 +471,5 @@
         }, wait);
       }
     };
-
   };
 }());
