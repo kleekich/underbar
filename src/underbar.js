@@ -392,23 +392,6 @@
     }
 
   };
-   /*
-   * TIP: map is really handy when you want to transform an array of
-   * values into a new array of values. _.pluck() is solved for you
-   * as an example of this.
-   */
-
-  // Takes an array of objects and returns and array of the values of
-  // a certain property in it. E.g. take an array of people and return
-  // an array of just their ages
-  _.pluck = function(collection, key) {
-    // TIP: map is really handy when you want to transform an array of
-    // values into a new array of values. _.pluck() is solved for you
-    // as an example of this.
-    return _.map(collection, function(item){
-      return item[key];
-    });
-  };
 
   // Zip together two or more arrays with elements of the same index
   // going together.
@@ -423,7 +406,6 @@
     for(var i = 0; i < maxLen; i++){
       result[i] = _.pluck(arguments, i);
     }
-
     return result;
   };
 
@@ -432,6 +414,9 @@
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
+    return _.reduce(nestedArray, function(accum, el){
+        return accum.concat((!Array.isArray(el)) ? [el] : _.flatten(el));
+    },[]);
   };
 
   // Takes an arbitrary number of arrays and produces an array that contains
