@@ -419,27 +419,6 @@
     },[]);
   };
 
-    // Determine if the array or object contains a given value (using `===`).
-  _.contains = function(collection, target) {
-    // TIP: Many iteration problems can be most easily expressed in
-    // terms of reduce(). Here's a freebie to demonstrate!
-    return _.reduce(collection, function(wasFound, item) {
-      if (wasFound) {
-        return true;
-      }
-      return item === target;
-    }, false);
-  };
-
-
-  // Determine whether all of the elements match a truth test.
-  _.every = function(collection, iterator) {
-    // TIP: Try re-using reduce() here.
-    return _.reduce(collection, function(passedSoFar, el){
-      if(!passedSoFar) return false;
-      return iterator ? (iterator(el) ? true : false) : el;
-    }, true)
-  };
   // Takes an arbitrary number of arrays and produces an array that contains
   // every item shared between all the passed-in arrays.
   _.intersection = function() {
@@ -462,7 +441,6 @@
         result.push(target);
       }
     }
-
     //return array
     return result;
     
@@ -472,6 +450,7 @@
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+
   };
 
   // Returns a function, that, when invoked, will only be triggered at most once
