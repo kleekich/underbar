@@ -392,6 +392,23 @@
     }
 
   };
+   /*
+   * TIP: map is really handy when you want to transform an array of
+   * values into a new array of values. _.pluck() is solved for you
+   * as an example of this.
+   */
+
+  // Takes an array of objects and returns and array of the values of
+  // a certain property in it. E.g. take an array of people and return
+  // an array of just their ages
+  _.pluck = function(collection, key) {
+    // TIP: map is really handy when you want to transform an array of
+    // values into a new array of values. _.pluck() is solved for you
+    // as an example of this.
+    return _.map(collection, function(item){
+      return item[key];
+    });
+  };
 
   // Zip together two or more arrays with elements of the same index
   // going together.
@@ -399,6 +416,15 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    var args = [].slice.call(arguments);
+    //Getting the length of the longest array
+    var maxLen = _.last(_.sortBy(args, 'length')).length;
+    var result = [];
+    for(var i = 0; i < maxLen; i++){
+      result[i] = _.pluck(arguments, i);
+    }
+
+    return result;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
