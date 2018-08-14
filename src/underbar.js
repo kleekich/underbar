@@ -450,7 +450,18 @@
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
-
+    /*
+      Basic idea would be, we are going to filter out elements of rest arrays 
+      from the given array.
+    */
+    //rest is remainder of our arguments arrays 
+    var rest = [].slice.call(arguments,1);
+    //flatten the rest to get an collective version of arrays
+    rest = _.flatten(rest);
+    //filter out elements from our array
+    return _.filter(array, function(el){
+      return !_.contains(rest, el);
+    });
   };
 
   // Returns a function, that, when invoked, will only be triggered at most once
