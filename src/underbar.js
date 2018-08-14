@@ -470,5 +470,16 @@
   //
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
+    var called = false;
+    return function() {
+      if(called !== true) {
+        called = true;
+        func.apply([].slice.apply(arguments));
+        window.setTimeout(function() {
+          called = false;
+        }, wait);
+      }
+    };
+
   };
 }());
