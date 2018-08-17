@@ -57,7 +57,6 @@
           iterator(collection[key], key, collection);
         }
     }else if(collection === null) return null;
-    
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
@@ -67,13 +66,11 @@
     // implemented for you. Instead of using a standard `for` loop, though,
     // it uses the iteration helper `each`, which you will need to write.
     var result = -1;
-
     _.each(array, function(item, index) {
       if (item === target && result === -1) {
         result = index;
       }
     });
-
     return result;
   };
 
@@ -110,9 +107,7 @@
         return _.indexOf(array, el) === index;
       });
     }
-    
   };
-
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
@@ -166,7 +161,6 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
     var hasTwoArguments= arguments.length === 2 ? true : false;
-
     _.each(collection, function(el){
       if(hasTwoArguments){
         accumulator = _.first(collection);
@@ -176,9 +170,6 @@
       }
     });
     return accumulator;
-    
-  
-    
   };
 
   // Determine if the array or object contains a given value (using `===`).
@@ -192,7 +183,6 @@
       return item === target;
     }, false);
   };
-
 
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
