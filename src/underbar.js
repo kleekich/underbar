@@ -223,16 +223,14 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    var args = [].slice.call(arguments,1);
-    return _.reduce(args, function(accumObject, object){
+    var objectsToBeAdded = [].slice.call(arguments,1);
+    return _.reduce(objectsToBeAdded, function(accumObject, object){
       for(var key in object){
         accumObject[key] = object[key];
       }
       return accumObject;
     }
-    ,arguments[0]);
-
-    
+    ,arguments[0]);    
   };
 
   // Like extend, but doesn't ever overwrite a key that already
