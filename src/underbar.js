@@ -236,9 +236,10 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
-    var args = [].slice.call(arguments,1);
-    return _.reduce(args, function(accumObject, object){
+    var objectsToBeAdded = [].slice.call(arguments,1);
+    return _.reduce(objectsToBeAdded, function(accumObject, object){
       for(var key in object){
+        //Check whether it has this key already
         if(!accumObject.hasOwnProperty(key)) accumObject[key] = object[key];
       }
       return accumObject;
