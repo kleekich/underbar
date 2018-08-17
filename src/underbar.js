@@ -288,13 +288,19 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    //Create a cache to store our arguments
     var cache = {};
     return function(){
       var args = [].slice.call(arguments);
+      //Getting a combination of arguments as JSON format
       var argsJSON = JSON.stringify(args);
+      //If the arguments in JSON format is not in our cache,
       if(!(argsJSON in cache)){
+        //We store the argumetns in JSON format as key,
+        //and return value of the function call as value.
         cache[argsJSON] = func.apply(this, args);
       }
+      //return cached value
       return cache[argsJSON];
     };
   };
@@ -326,13 +332,16 @@
   _.shuffle = function(array) {
     var copy = array.slice();
     var index, temp;
+    //For each element in ith position,
     for (var i = 0; i < copy.length; i++){
+      //Get a random index, and swap them.
       index = Math.floor(Math.random() * copy.length);
       temp = copy[i];
       copy[i] = copy[index];
       copy[index] = temp;
     }
-    return copy
+    //return the shuffled array
+    return copy;
   };
 
 
@@ -347,10 +356,13 @@
   // Calls the method named by functionOrKey on each value in the list.
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+    
     return (typeof functionOrKey === "string") ? 
+            //If it is a key lookup, return
             _.map(collection, function(el){
               return el[functionOrKey](args);
             }) :
+            //If it is a function, return 
             _.map(collection, function(el){
               return functionOrKey.apply(el, args);
             });
@@ -361,10 +373,12 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
+    //Check whether it is a property lookup
     if(typeof iterator === "string"){
       return collection.sort(function(a, b){
         return a[iterator] - b[iterator];
       });
+    //If it is not property lookup, we have iterator to run 
     }else{
       return collection.sort(function(a, b){
         return iterator(a) - iterator(b);
@@ -379,10 +393,12 @@
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
     var args = [].slice.call(arguments);
-    //Getting the length of the longest array
+    //Get the length of the longest array
     var maxLen = _.last(_.sortBy(args, 'length')).length;
     var result = [];
+    //For each index of our result array
     for(var i = 0; i < maxLen; i++){
+      //Use _.pluck to get elements in ith position from each array.
       result[i] = _.pluck(arguments, i);
     }
     return result;
@@ -393,7 +409,11 @@
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
+    //Use reduce function to build our accummulative array
     return _.reduce(nestedArray, function(accum, el){
+        //We concat our element wrapped in array,
+        //otherwise, if current element is an array, we recursively call
+        // _.flatten to this array.
         return accum.concat((!Array.isArray(el)) ? [el] : _.flatten(el));
     },[]);
   };
