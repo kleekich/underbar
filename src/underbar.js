@@ -292,8 +292,7 @@
     return function(){
       var args = [].slice.call(arguments);
       var argsJSON = JSON.stringify(args);
-      var alreadyComputed = (argsJSON in cache);
-      if(!alreadyComputed){
+      if(!(argsJSON in cache)){
         cache[argsJSON] = func.apply(this, args);
       }
       return cache[argsJSON];
